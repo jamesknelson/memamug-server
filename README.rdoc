@@ -1,0 +1,12 @@
+== Memamug
+
+- install the bundle
+- you'll need a postgres database, set your settings in database.yml
+- make sure to enable the UUID setting on postgres: `create extension "uuid-ossp";`
+- rake db:migrate
+- .env and required environment variables:
+  * set up an S3 bucket
+  * set up a facebook app
+- using mailcatcher to check sent e-mails in development mode
+- install foreman with `gem install foreman`
+- start with `foreman start`

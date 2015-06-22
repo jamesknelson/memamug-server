@@ -1,0 +1,10 @@
+# Ignore rbenv config.
+.ruby-gemset
+.ruby-version
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+
+# Environment variables for foreman
+.env

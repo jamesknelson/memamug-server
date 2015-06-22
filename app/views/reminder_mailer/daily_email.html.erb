@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Do you remember these contacts?</h1>
+    <a href="http://www.memamug.com/#/email/<%= @reminder_mail.id -%>">Don't see the photos?</a>
+    <p>
+      Do you remember the names of these people? If you're unsure, you can click
+      any person to find their name.
+    </p>
+    <table cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <td width="180">
+          <table cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td width="180"><img src="<%= @reminder_mail.contacts[0].photos.first.image.s3_object('small').url_for(:read).to_s %>"></td>
+            </tr>
+          </table>
+        </td>
+        <td width="180">
+          &nbsp;
+        </td>
+        <td width="180">
+          &nbsp;
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
