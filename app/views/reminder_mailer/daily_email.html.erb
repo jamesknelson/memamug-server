@@ -1,31 +1,41 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h1>Do you remember these contacts?</h1>
-    <a href="http://www.memamug.com/#/email/<%= @reminder_mail.id -%>">Don't see the photos?</a>
-    <p>
-      Do you remember the names of these people? If you're unsure, you can click
-      any person to find their name.
-    </p>
-    <table cellspacing="0" cellpadding="0" border="0">
-      <tr>
+<div style="font-family: sans-serif;">
+  <h1>Do you remember these people?</h1>
+  <p>You recently asked Memamug to send you reminders of your new contacts. Here they are!</p>
+  <p><i>Don't see the photos? Make sure to add reminders@memamug.com to your address book and you have images enabled for this e-mail!</i></p>
+  <table cellspacing="0" cellpadding="0" border="0">
+    <% @reminder_mail
+        .contacts
+        .each_with_index
+        .map {|contact, i| [contact, i]}
+        .group_by {|contact, i| i / 3}
+        .map do |_, row| 
+          row.map { |contact, i| contact } + Array.new(3 - row.length, "")
+        end
+        .each do |row| %>
+    <tr>
+      <% row.each do |contact| %>
         <td width="180">
-          <table cellspacing="0" cellpadding="0" border="0">
-            <tr>
-              <td width="180"><img src="<%= @reminder_mail.contacts[0].photos.first.image.s3_object('small').url_for(:read).to_s %>"></td>
-            </tr>
-          </table>
+          <% if contact != "" %>
+            <table cellspacing="15" cellpadding="0" border="0">
+              <tr>
+                <td width="180">
+                  <img src="<%= contact.photos.first.image.s3_object('small').url_for(:read).to_s %>" style="border-radius: 50%;">
+                  <br>
+                  <p style="text-align: center;"><%= contact.display_name %></p>
+                </td>
+              </tr>
+            </table>
+          <% end %>
         </td>
-        <td width="180">
-          &nbsp;
-        </td>
-        <td width="180">
-          &nbsp;
-        </td>
-      </tr>
-    </table>
-  </body>
-</html>
+      <% end %>
+    </tr>
+    <% end %>
+    <tr>
+      <td colspan="3" align="center" width="540">
+        <br> 
+        <br>
+        <a href="http://www.memamug.com/#/unsubscribe">Unsubscribe</a>
+      </td>
+    </tr>
+  </table>
+</div>
