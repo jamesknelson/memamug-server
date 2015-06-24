@@ -1,12 +1,16 @@
-== Memamug
+# Memamug
 
-- install the bundle
-- you'll need a postgres database, set your settings in database.yml
-- make sure to enable the UUID setting on postgres: `create extension "uuid-ossp";`
-- rake db:migrate
-- .env and required environment variables:
-  * set up an S3 bucket
-  * set up a facebook app
-- using mailcatcher to check sent e-mails in development mode
-- install foreman with `gem install foreman`
-- start with `foreman start`
+An open-source app which helps you remember people you'd normally forget. See the live version at [memamug.com](http://www.memamug.com).
+
+This app was built to demonstrate how to write a simple web-app, without resorting to a cliché to-do list. I'll be writing a number of tutorials to explain how to build this app, from creating the initial directory structure to deploying it live. Follow [@james_k_nelson](https://twitter.com/james_k_nelson) to keep updated.
+
+## Getting Started
+
+This server is built with [rails-api](https://github.com/rails-api/rails-api), so the installation process mostly follows that for a standard rails application, with a few differences:
+
+* It requires you have the gems `foreman` and `mailcatcher` installed
+* It uses the `uuid-ossp` PostgreSQL extension
+* You'll need to rename `.env-example` to `.env` and add your S3 and Facebook Login API keys.env`
+* You'll want to start the app with `foreman start`
+
+Need more specific details? I'll be writing more soon. Follow [@james_k_nelson](https://twitter.com/james_k_nelson) to stay up to date.
