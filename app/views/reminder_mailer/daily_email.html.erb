@@ -19,7 +19,7 @@
             <table cellspacing="15" cellpadding="0" border="0">
               <tr>
                 <td width="180">
-                  <img src="<%= contact.photos.first.image.s3_object('small').url_for(:read).to_s %>" style="border-radius: 50%;">
+                  <img src="<%= contact.photos.first.image.s3_object('small').url_for(:read, expires: 86400 * 365).to_s %>" style="border-radius: 50%;">
                   <br>
                   <p style="text-align: center;"><%= contact.display_name %></p>
                 </td>
