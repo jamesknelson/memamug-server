@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
       ''')
       .where('(reminder_mails.created_at IS NULL) OR (reminder_mails.created_at::date <> ?)', except_attempted_on)
       .where('contacts.subscribed_on::date IN (?)', subscription_dates)
+      .distinct
   end
 
   def refetch_avatar(identity)
